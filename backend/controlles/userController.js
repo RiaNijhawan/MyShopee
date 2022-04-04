@@ -11,7 +11,7 @@ const { use } = require('express/lib/router');
 
 exports.registerUesr = CatchAsyncErrorHandler(
     async (req, res, next) => {
-        const { name, email, password } = req.body;
+        const { name, email, password,role } = req.body;
 
         const user = await User.create({
             name,
@@ -20,7 +20,7 @@ exports.registerUesr = CatchAsyncErrorHandler(
             avatar: {
                 public_id: "this is a sample image",
                 url: "mypic"
-            }
+            }, role
         });
         
         sendToken(user, 201, res);
